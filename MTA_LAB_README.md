@@ -294,9 +294,9 @@ Now we need to do something similar on the two Windows nodes. Perform the follow
 2. From the start menu, open a Powershell window (right click "run as administrator")
 3. Change Directories
 
-```
-cd /
-```
+	```
+	cd /
+	```
 
 4. Execute the `copy_certs` script
 
