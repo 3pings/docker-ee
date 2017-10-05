@@ -167,6 +167,6 @@ The output should look similar to the following.
 5. Run the contiv install command
 
 	```
-	./install/ansible/install_swarm.sh -f ./install/ansible/aci_cfg.yml -e ~/.ssh/id_rsa -u root -m aci -v "contiv/aci-gw:3.0.1k" -p
+	./install/ansible/install_swarm.sh -f install/ansible/aci_cfg.yml -e ~/.ssh/id_rsa -u root -m aci -v "contiv/aci-gw:3.0.1k" -p
 	```
 	
