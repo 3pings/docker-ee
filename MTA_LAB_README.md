@@ -119,7 +119,7 @@ You may enter additional aliases (SANs) now or press enter to proceed with the a
 Additional aliases:
 ```
 
-1. Download the [license file](https://drive.google.com/file/d/0ByQd4O58ibOEazFVRUJYNDYxMjg/view?usp=sharing) to your local laptop.
+1. Download the [license file](https://drive.google.com/file/d/0ByQd4O58ibOEMkM4bE5XVnJPbEU/view?usp=sharing) to your local laptop.
 
 2. Open a web browser and type in the ip address of `pod-X-lin01` in the address bar.  Ignore any certificate warnings and continue.
 
@@ -433,7 +433,7 @@ Services are application building blocks (although in many cases an application 
 
 4. Enter `linux_tweet_app` for the name.
 
-4. Under `Image` enter the path to your image which should be `<linux node b fdqn/docker/linux_tweet_app`
+4. Under `Image` enter the path to your image which should be `<pod-X-lin02 IP Address>/docker/linux_tweet_app`
 
 5. From the left hand menu click `Scheduling`
 
@@ -459,7 +459,7 @@ Services are application building blocks (although in many cases an application 
 
 12. Click `Create` near the bottom right of the screen.
 
-After a few seconds you should see a green dot next to your service name. Once you see you green dot you can  point your web browser to `http://<linux node c fqdn>:8088` to see your running website.
+After a few seconds you should see a green dot next to your service name. Once you see you green dot you can  point your web browser to `http://<pod-X-lin02 IP Address>:8088` to see your running website.
 
 > **Note**: You want to go to `http://` not `https://`
 
@@ -504,7 +504,7 @@ When the process completes you'll find a dockerfile in `c:\windowstweetapp`
 
 1. CD into the directory where your Image2Docker files have been placed.
 
-	`PS C:\Users\docker> cd c:\windowstweetapp\ `
+	`cd c:\windowstweetapp\ `
 
 
 2. Use `docker build` to build your Windows tweet web app Docker image.
@@ -549,6 +549,9 @@ When the process completes you'll find a dockerfile in `c:\windowstweetapp`
 
 	```
 	PS C:\Users\docker> docker push <pod-X-lin02 IP Address>/docker/windows_tweet_app
+	```
+	
+	```
 	The push refers to a repository [<pod-X-lin02 IP Address>/docker/windows_tweet_app]
 	5d08bc106d91: Pushed
 	74b0331584ac: Pushed
@@ -563,6 +566,7 @@ When the process completes you'll find a dockerfile in `c:\windowstweetapp`
 	f358be10862c: Skipped foreign layer
 	latest: digest: sha256:e28b556b138e3d407d75122611710d5f53f3df2d2ad4a134dcf7782eb381fa3f size: 2825
 	```
+	
 ### <a name="task3.3"></a> Task 3.3: Deploy the Windows Web App
 Now that we have our Windows Tweet App up on the DTR server, let's deploy it. It's going to be almost identical to how did the Linux version with a couple of small exceptions:
 
