@@ -548,7 +548,7 @@ When the process completes you'll find a dockerfile in `c:\windowstweetapp`
 5. Push your new image up to Docker Trusted Registry.
 
 	```
-	PS C:\Users\docker> docker push <pod-X-lin02 IP Address>/docker/windows_tweet_app
+	docker push <pod-X-lin02 IP Address>/docker/windows_tweet_app
 	```
 	
 	```
