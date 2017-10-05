@@ -70,7 +70,7 @@ You will be provided a set of five virtual machines (four Linux and 1 Windows), 
 
 ## <a name="task1"></a>Task 1: Build a Docker EE Cluster
 
-In this first step we're going to install Docker Universal Control Plane (UCP) and Docker Trusted Registry. UCP is a web-based control plane for Docker containers that can deploy and manage Docker-based applications across Windows and Linux nodes. Docker Trusted Registry is a private registry server for story your Docker images.
+In this first step we're going to install Docker Universal Control Plane (UCP) and Docker Trusted Registry. UCP is a web-based control plane for Docker containers that can deploy and manage Docker-based applications across Windows and Linux nodes.  Docker Trusted Registry is a private registry server for storing your Docker images.
 
 ### <a name="task1.1"></a>Task 1.1: Install the UCP manager
 
@@ -89,7 +89,7 @@ Run the following command to pull the image and install UCP.
 ```
 docker container run --rm -it --name ucp \
 -v /var/run/docker.sock:/var/run/docker.sock \
-docker/ucp:2.2.2 install \
+docker/ucp:2.2.3 install \
 --admin-username docker \
 --admin-password Docker2017 \
 --host-address <pod-X-lin01 Ip Address> \
@@ -199,12 +199,12 @@ Like UCP, DTR uses a single Docker container to bootstrap the install process. I
 	* **--ucp-url**: The IP address of the UCP Manager (pod-X-lin01)
 	
 	```
-	docker run -it --rm docker/dtr install \
-	--dtr-external-url <pod-X-lin02 IP Address \
+	docker run -it --rm docker/dtr:2.3.3 install \
+	--dtr-external-url <pod-X-lin02 IP Address> \
 	--ucp-node <pod-X-lin02> \
 	--ucp-username docker \
 	--ucp-password Docker2017 \
-	--ucp-url <pod-X-lin01 IP Address> \
+	--ucp-url https://<pod-X-lin01 IP Address> \
 	--ucp-insecure-tls
 	```
 
@@ -256,15 +256,15 @@ Perform the following steps on all 4 of your Linux nodes (pod-X-lin01, pod-X-lin
 
 	`$ ./copy_certs.sh <pod-X-lin02 Ip address>`
 
+	If prompted, enter the password for the docker user account.
+
 	You should see the following output
 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 					 Dload     Upload  Total   Spent    Left    Speed
+		100  1939  100  1939    0     0  21422      0 --:--:-- --:--:-- --:--:-- 21786
+Redirecting to /bin/systemctl restart  docker.service
 
-		% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-		100  1988  100  1988    0     0   7216      0 --:--:-- --:--:-- --:--:--  7229
-		Updating certificates in /etc/ssl/certs...
-		1 added, 0 removed; done.
-		Running hooks in /etc/ca-certificates/update.d...
-		done.
 
 > **Note**: In some cases you may see some Perl warnings in addition to the above output, these can be safely ignored.
 
@@ -696,11 +696,3 @@ The UI shows your stack (`atsea`) and that it's comprised of 2 services and 1 ne
 
 
 This concludes our workshop, thanks for attending.
-
-
-
-
-
-
-
-
