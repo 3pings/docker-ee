@@ -291,13 +291,18 @@ Now we need to do something similar on the two Windows nodes. Perform the follow
 
 1. RDP into the Windows node
 
-2. From the start menu, open a Powershell window
+2. From the start menu, open a Powershell window (right click "run as administrator")
+3. Change Directories
 
-3. Execute the `copy_certs` script
+```
+cd /
+```
 
-	`c:\copy_certs.ps1 <pod-X-lin02 Ip Address>`
+4. Execute the `copy_certs` script
 
-3. Log into the DTR server from the command line to ensure the cert was copied correctly. The username should be `docker` and the password `Docker2017`
+	`copy_certs.ps1 <pod-X-lin02 Ip Address>`
+
+5. Log into the DTR server from the command line to ensure the cert was copied correctly. The username should be `docker` and the password `Docker2017`
 
 	> **Note**: Be sure to substitute the IP Address of pod-X-lin02 Linux node
 
