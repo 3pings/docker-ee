@@ -262,8 +262,8 @@ Perform the following steps on all 4 of your Linux nodes (pod-X-lin01, pod-X-lin
 
 ```
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 					 Dload     Upload  Total   Spent    Left    Speed
-		100  1939  100  1939    0     0  21422      0 --:--:-- --:--:-- --:--:-- 21786
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1939  100  1939    0     0  21422      0 --:--:-- --:--:-- --:--:-- 21786
 Redirecting to /bin/systemctl restart  docker.service
 ```
 
