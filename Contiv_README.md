@@ -37,7 +37,7 @@ Where X is the pod number [OS] is the Operating System type and YY is the Node n
 ### Virtual Machine Roles
 This lab uses a total of five virtual machines
 
-The Docker EE cluster you will be building will be comprised of five nodes - 4 Linux nodes running Centos7 and 1 Windows node running Server 2016.
+The Docker EE cluster you will be building will be comprised of five nodes - 4 Linux nodes running Centos7 and 1 Windows node running Server 2016.  We will only utilize the Linux nodes for this excesise as there is not currently any Contiv support for Windows.
 
 ![](./images/vm_roles.png)
 
@@ -61,13 +61,14 @@ You will be provided a set of five virtual machines (four Linux and 1 Windows), 
 > **Note**: When you connect to the Windows VM, if you are prompted to run Windows Update, you should cancel out. The labs have been tested with the existing VM state and any changes may cause problems.
 
 ## <a name="task1"></a>Task 1:  Deploy Contiv
+
 ![](./images/linux75.png)
 
 
 
 ##<a name="task1.1"></a>Task1.1: Deploy SSH Keys
 
-1. Either in a terminal window (Mac or Linux) or using Putty (Windows) SSH into Linux node **01** using the IP Address. The IP Address can be found on your lab information paper.  The username is `docker` and the password is `Docker2017`
+1. Either in a terminal window (Mac or Linux) or using Putty (Windows) SSH into Linux node **01** using the IP Address. The IP Address can be found on your lab information paper.  The username is `root` and the password is `C1sco123`
 
 	```
 	ssh docker@<pod-X-lin01>
@@ -95,24 +96,12 @@ The output should look similar to the following.
 	Your public key has been saved in /root/.ssh/id_rsa.pub.
 	The key fingerprint is:
 	e1:0e:0e:82:e8:9c:3e:48:d7:ea:fb:22:59:59:f6:79 root@pod-2-lin01
-	The key's randomart image is:
-	+--[ RSA 2048]----+
-	|                 |
-	|                 |
-	|        .        |
-	|..   o . .       |
-	|o . * o S        |
-	|o..= + = E       |
-	|o++ . . o        |
-	|o+ o             |
-	| .+o+.           |
-	+-----------------+
 	```	
 
 3. Copy the keys to all of the linux hosts.  The following command must be run for all 4 Linux hosts
 	
 	```
-	ssh-copy-id root@<pod-X-lin01 IP Address>
+	ssh-copy-id docker@<pod-X-lin01 IP Address>
 	```
 	
 	You should see simlar output to the below:
@@ -123,7 +112,7 @@ The output should look similar to the following.
 	Are you sure you want to continue connecting (yes/no)? yes
 	/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already 	installed
 	/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new 	keys
-	root@10.87.88.137's password: 
+	docker@10.87.88.137's password: 
 	Full path required for exclude: net:[4026532443].
 	Full path required for exclude: net:[4026532611].
 	Full path required for exclude: net:[4026532684].
@@ -140,11 +129,11 @@ The output should look similar to the following.
 1. Download the Contiv Installation Files
 	
 	```
-	curl -L -O https://github.com/contiv/install/releases/download/1.1.2/contiv-1.1.2.tgz
+	curl -L -O https://github.com/contiv/install/releases/download/1.1.1/contiv-1.1.3.tgz
 	```
 	
 	```
-	[docker@pod-2-lin01 ~]$ curl -L -O https://github.com/contiv/install/releases/download/1.1.2/contiv-1.1.2.tgz
+	[docker@pod-2-lin01 ~]$ curl -L -O https://github.com/contiv/install/releases/download/1.1.3/contiv-1.1.3.tgz
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   606    0   606    0     0    736      0 --:--:-- --:--:-- --:--:--   736
@@ -156,13 +145,13 @@ The output should look similar to the following.
 
 	
 	```
-	tar oxf contiv-1.1.2.tgz
+	tar oxf contiv-1.1.3.tgz
 	```
 
 3. Change directories to the extracted folder
 	
 	```
-	cd contiv-1.1.2
+	cd contiv-1.1.3
 	```
 
 4.  Modify the ansible configuration file to match your pod information
@@ -171,38 +160,13 @@ The output should look similar to the following.
 	vi install/ansible/aci_cfg.yml
 	```
 	
-	This is an example:
-	
-	```
-CONNECTION_INFO:
-      10.87.88.135:
-        role: master
-        control: ens160
-        data: ens192
-      10.87.88.136:
-        control: ens160
-        data: ens192
-      10.87.88.137:
-        control: ens160
-        data: ens192
-      10.87.88.138:
-        control: ens160
-        data: ens192
-APIC_URL: "https://:443"
-APIC_USERNAME: ""
-APIC_PASSWORD: ""
-APIC_PHYS_DOMAIN: "docker-contiv"
-
-APIC_EPG_BRIDGE_DOMAIN: "not_specified"
-APIC_CONTRACTS_UNRESTRICTED_MODE: "no"
-
-APIC_LEAF_NODES:
-    - topology/pod-1/paths-101/pathep-[eth1/5]
-    - topology/pod-1/paths-102/pathep-[eth1/5]
-	```
 	
 	Save the file.
 > **Note**: IF you are not familiar with VI please let a proctor know and we will walk you through this process.
 	
 5. Run the contiv install command
+
+	```
+	./install/ansible/install_swarm.sh -f ./install/ansible/aci_cfg.yml -e ~/.ssh/id_rsa -u root -m aci -v "contiv/aci-gw:3.0.1k" -p
+	```
 	
