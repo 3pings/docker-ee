@@ -261,10 +261,10 @@ Perform the following steps on all 4 of your Linux nodes (pod-X-lin01, pod-X-lin
 	You should see the following output
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 					 Dload     Upload  Total   Spent    Left    Speed
-		100  1939  100  1939    0     0  21422      0 --:--:-- --:--:-- --:--:-- 21786
-Redirecting to /bin/systemctl restart  docker.service
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1939  100  1939    0     0  21422      0 --:--:-- --:--:-- --:--:-- 21786
 
+Redirecting to /bin/systemctl restart  docker.service
 
 > **Note**: In some cases you may see some Perl warnings in addition to the above output, these can be safely ignored.
 
