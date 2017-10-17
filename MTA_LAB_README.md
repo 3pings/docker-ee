@@ -298,7 +298,7 @@ Now we need to do something similar on the two Windows nodes. Perform the follow
 
 4. Execute the `copy_certs` script
 
-	`copy_certs.ps1 <pod-X-lin02 Ip Address>`
+	`.\copy_cert.ps1 <pod-X-lin02 Ip Address>`
 
 5. Log into the DTR server from the command line to ensure the cert was copied correctly. The username should be `docker` and the password `Docker2017`
 
