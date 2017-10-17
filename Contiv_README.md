@@ -129,7 +129,7 @@ The output should look similar to the following.
 1. Download the Contiv Installation Files
 	
 	```
-	curl -L -O https://github.com/contiv/install/releases/download/1.1.1/contiv-1.1.3.tgz
+	curl -L -O https://github.com/contiv/install/releases/download/1.1.3/contiv-1.1.3.tgz
 	```
 	
 	```
