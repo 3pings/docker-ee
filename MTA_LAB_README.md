@@ -194,8 +194,8 @@ Like UCP, DTR uses a single Docker container to bootstrap the install process. I
 1.  Run the bootstrap to deploy DTR.
 	You will need to supply three inputs:
 	
-	* **--dtr-external URL**: `<pod-X-lin01 IP Address>`
-	* **--ucp-node**: The hostname of `lin02` (For example: pod-X-lin02)
+	* **--dtr-external URL**: `<pod-X-lin02 IP Address>` This is the hostname or IP you will rach the DTR on.
+	* **--ucp-node**: The hostname of `lin02` (For example: pod-X-lin02) This must be a node name in the Pod
 	* **--ucp-url**: The IP address of the UCP Manager (pod-X-lin01)
 	
 	```
